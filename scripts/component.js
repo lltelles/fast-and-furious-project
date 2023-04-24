@@ -10,7 +10,8 @@ class Component {
         this.ctx = ctx; 
 
         // Speed of the Component
-        this.speedX = 0; 
+        this.vx = 0;
+        this.vy = 0; 
     }
 
     // Draw Function 
@@ -33,12 +34,22 @@ class Component {
 
     // New Position Function 
     newPos(){
-        if(this.x <= 0){
-            this.x = 0;
-        } else if (this.x + 40 >= 700){
-            this.x = 660; // => 700-40
-        }
-        this.x += this.speedX;
+        // X Axis Bounderies
+        let leftLimit = 115;
+        let rightLimit = 585;
+        //Bounderies + movement in the X Axis
+        if(this.x <= leftLimit) {this.x = leftLimit;} 
+        else if (this.x + this.w >= rightLimit) {this.x = rightLimit-this.w;}
+        this.x += this.vx;
+        console.log(this.x)
+
+        // Y Axis Bounderies
+        let upLimit = canvas.height/3;
+        let bottomLimit = canvas.height-10;
+        //Bounderies + movement in the X Axis
+        if(this.y <= upLimit) {this.y = upLimit;} 
+        else if (this.y + this.h >= bottomLimit) {this.y = bottomLimit-this.h;}
+        this.y += this.vy;
     }
     // Defining the borders of the player
     top(){return this.y;}

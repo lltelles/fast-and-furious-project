@@ -33,27 +33,26 @@ window.onload = () => {
         
     }
 
+    let x=0;
+    let y=0;
+    let vx =0;
+    let vy=0;
+
     document.addEventListener('keydown', (e)=>{
       switch (e.code){
-        case 'ArrowLeft':
-        player.speedX -=1;
-        break;
-  
-        case 'ArrowRight': 
-        player.speedX +=1; 
-        break; 
-        
-        case 'Arrowup': 
-        player.speedY +=1; 
-        break; 
-        
-        case 'ArrowDown': 
-        player.speedY -=1; 
-        break; 
+        case 'ArrowLeft': player.vx -=1; break;
+        case 'ArrowRight': player.vx +=1; break; 
+        case 'ArrowUp': player.vy -=1; break; 
+        case 'ArrowDown': player.vy +=1; break; 
       }
     });
   
-    document.addEventListener('keyup', ()=>{
-      player.speedX = 0; 
+    document.addEventListener('keyup', (e)=>{
+      switch (e.code){
+        case 'ArrowLeft': player.vx = 0; break;
+        case 'ArrowRight': player.vx = 0; break; 
+        case 'ArrowUp': player.vy = 0; break; 
+        case 'ArrowDown': player.vy = 0; break; 
+      }
     })
   
