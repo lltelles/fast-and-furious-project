@@ -37,7 +37,7 @@ window.onload = () => {
     //Movement of the player speed definition
     document.addEventListener('keydown', (e)=>{
       switch (e.code){
-        case 'ArrowLeft': player.vxl =-3; console.log(e.code); break;
+        case 'ArrowLeft': player.vxl =-3; break;
         case 'ArrowRight': player.vxr =3; break; 
         case 'ArrowUp': player.vy =-3; break; 
         case 'ArrowDown': player.vy =3; break; 
