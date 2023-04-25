@@ -1,62 +1,65 @@
 class Game {
-  constructor(ctx, width, height, player) {
-    // Canvas
-    this.ctx = ctx;
-    // Canvas Width, Height
-    this.width = width;
-    this.height = height;
-    // Player
-    this.player = player;
-    // Obstacles / Enemies
-    this.enemies = [];
-    // SetInterval
-    this.intervalId = null;
-    // Frames
-    this.frames = 0;
-    // Score
-    this.score = 0;
-    //Lives (between 1 and 3)
-    this.lives = 3;
-    //Level (goes from 1 to 3)
-    this.level = 1;
-  }
+    constructor(ctx, width, height, player){
+        // Canvas
+        this.ctx = ctx;
+        // Canvas Width, Height
+        this.width = width; 
+        this.height = height;
+        // Player
+        this.player = player;
+        // Obstacles / Enemies
+        this.enemies = [];
+        // Perks/friends
+        this.friends = [];
+        // SetInterval
+        this.intervalId = null;
+        // Frames
+        this.frames = 0;
+        // Score
+        this.score = 0;
+        //Lives (between 1 and 3)
+        this.lives = 3;
+        //Level (goes from 1 to 3)
+        this.level = 1;
+    }
 
-  // Start Function
-  start() {
-    this.intervalId = setInterval(this.update, 10);
-  }
+    // Start Function 
+    start(){
+        this.intervalId = setInterval(this.update, 10);
+    }
 
-  // Stop Function
-  stop() {
-    clearInterval(this.intervalId);
-  }
+    // Stop Function 
+    stop(){
+        clearInterval(this.intervalId);
+    }
 
-  // Arrow Function that Updates the Game Logic
-  update = () => {
-    // Updating Frames
-    this.frames++; // 100 * 10 = 1s ; 200 * 10 = 2s
-    // Updating Score
-    this.score += 1;
-    // Updating Lives
-    this.updateLevel();
-    this.lives;
-    // Updating Level
-    this.level;
-    // Clearing the Canvas
-    this.clear();
-    // Create our Background
-    this.createBackground();
-    this.player.newPos();
-    this.player.draw();
-    this.updateEnemies();
-    this.checkGameOver();
-    this.checkWin();
-  };
+    // Arrow Function that Updates the Game Logic every 10 milisecond
+    update = () => {
+        // Updates Frames
+        this.frames ++;
+        // Checks colision with friends and updates score and lives
+        this.updateScoreLives();
+        // Updates Level
+        this.updateLevel();
+        // Clears the Canvas
+        this.clear();
+        // Create our Background
+        this.createBackground();
+        //update player movement
+        this.player.newPos();
+        this.player.draw();
+        //Update enemies creation and position
+        this.updateEnemies();
+        this.updateFriends();
+        //Check for Win or Loss condition
+        this.checkGameOver();
+        this.checkWin();
+    }
 
-  // Clear Background
-  clear() {
-    this.ctx.clearRect(0, 0, this.width, this.height);
-  }
+    // Clear Background
+    clear(){
+        this.ctx.clearRect(0,0,this.width, this.height);
+    }
 
   createBackground() {
     const img = new Image();
@@ -86,113 +89,151 @@ class Game {
     ctx.font = "15px custom-font3";
     ctx.fillText(`Level: ${this.level}`, 580, 25);
   }
-  updateLevel() {
-    if (this.frames % 3000 === 0) {
-      this.level++;
+  updateScoreLives(){
+    const crashed = this.friends.some((friend)=>{
+        return this.player.crashWith(friend);
+    });
+    if(crashed){
+        let friendsId = this.friends.map((friend)=>{
+            console.log()
+            return this.player.crashWith(friend);
+        });
+        
+        let position = friendsId.indexOf(true);
+                    
+        if(this.friends[position].type==='score'){
+            this.score += 5000;}
+        else if(this.friends[position].type==='lives'){
+                this.lives ++};
+        this.friends.splice(position,1);       
     }
-  }
+    else{this.score ++}
+}
+updateLevel(){
+    if(this.frames % 3000 === 0){
+        this.level ++}
+    }
 
-  updateEnemies() {
+
+updateEnemies(){
     //Enemies Starting Positions
     let starterHeight = 40;
-    let randomX = Math.floor(Math.random() * (rightLimit - leftLimit));
-
+    let randomX = Math.floor(Math.random()*(rightLimit-leftLimit-100));
+    
     //List of Enemies
-    const policeCar = new Component(
-      leftLimit,
-      starterHeight,
-      100,
-      40,
-      true,
-      "../images/police-car.png.png",
-      ctx
-    );
-    const helicopter = new Component(
-      leftLimit,
-      starterHeight,
-      100,
-      40,
-      true,
-      "../images/helicopter.gif",
-      ctx
-    );
-
+    const policeCar = new Component(leftLimit,starterHeight,100,40, true,'../images/police-car.png.png',ctx);
+    const policeCar2 = new Component(leftLimit,starterHeight,100,40, true,'../images/cops-car.png',ctx);
+    const helicopter = new Component(leftLimit,starterHeight,100,100, true,'../images/helicopter.png',ctx);
+    
+    const enemiesList = [helicopter,policeCar, policeCar2, policeCar,policeCar2,policeCar2];
+    
     //checkpoint Enemy
-    const barrierL = new Component(
-      leftLimit,
-      starterHeight,
-      200,
-      20,
-      true,
-      "../images/cops-car.png",
-      ctx
-    );
-    const barrierR = new Component(
-      rightLimit - 200,
-      starterHeight,
-      200,
-      20,
-      true,
-      "../images/cops-car.png",
-      ctx
-    );
+    //level 1
+    const barrierL1 = new Component(leftLimit,starterHeight,100,40,true,'../images/cop-cars-barrier-4.png',ctx);
+    const barrierR1 = new Component(rightLimit-100,starterHeight,100,40,true,'../images/cop-cars-barrier-4.png',ctx);
+    //level 2
+    const barrierL2 = new Component(leftLimit,starterHeight,150,40,true,'../images/cops-car.png',ctx);
+    const barrierR2 = new Component(rightLimit-150,starterHeight,150,40,true,'../images/cops-car.png',ctx);
+    //level 3
+    const barrierL3 = new Component(leftLimit,starterHeight,200,40,true,'../images/cop-cars-barrier-4.png',ctx);
+    const barrierR3 = new Component(rightLimit-200,starterHeight,200,40,true,'../images/cop-cars-barrier-4.png',ctx);
 
-    const enemiesList = [policeCar, policeCar, policeCar, policeCar];
-
+   
     // Enemies movement
-    for (let i = 0; i < this.enemies.length; i++) {
-      // enemies's y ++
-      this.enemies[i].y += 1 * this.level;
-      // enemies' draw function
-      this.enemies[i].draw();
+    for (let i = 0; i<this.enemies.length; i++){
+        // enemies's y ++
+        this.enemies[i].y +=1*this.level; 
+         // enemies' draw function
+         this.enemies[i].draw();
+        
     }
     //level 1 difficulty from Start to 28seconds
-    if (this.frames < 2801) {
-      // each 2 seconds, a enemy is added to the array
-      if (this.frames % 200 === 0) {
-        let randomEnemy = Math.floor(Math.random() * enemiesList.length);
-        // Give a random position to the enemy
-        enemiesList[randomEnemy].x += randomX;
-        // Push enemy into enemy array
-        this.enemies.push(enemiesList[randomEnemy]);
-      }
+    if(this.frames < 2801){
+        
+        // each 2 seconds, a enemy is added to the array
+        if(this.frames % 200 === 0){
+            let randomEnemy = Math.floor(Math.random()*enemiesList.length)
+            // Give a random position to the enemy
+            enemiesList[randomEnemy].x +=randomX
+            // Push enemy into enemy array
+            this.enemies.push(enemiesList[randomEnemy]);
+        }
     }
     // Level 1 final boss at 30 seconds
-    if (this.frames % 3000 === 0) {
-      this.enemies.push(barrierL, barrierR);
+    if(this.frames % 3000 ===0) {
+        this.enemies.push (barrierL1, barrierR1)
     }
 
     //level 2 difficulty
-    if (this.frames > 3100 && this.frames < 5800) {
-      if (this.frames % 200 === 0) {
-        let randomEnemy = Math.floor(Math.random() * enemiesList.length);
-        // Give a random position to the enemy
-        enemiesList[randomEnemy].x += randomX;
-        // Push enemy into enemy array
-        this.enemies.push(enemiesList[randomEnemy]);
-      }
+    if(this.frames>3100 && this.frames<5800){
+        if(this.frames % 120 === 0){
+            let randomEnemy = Math.floor(Math.random()*enemiesList.length)
+            // Give a random position to the enemy
+            enemiesList[randomEnemy].x +=randomX
+            // Push enemy into enemy array
+            this.enemies.push(enemiesList[randomEnemy]);
+        }
     }
 
     // Level 2 final boss at 30 seconds
-    if (this.frames % 6000 === 0) {
-      this.enemies.push(barrierL, barrierR);
+    if(this.frames % 6000 ===0) {
+       this.enemies.push (barrierL2, barrierR2)
     }
 
     //level 3 difficulty
-    if (this.frames > 6100 && this.frames < 8800) {
-      if (this.frames % 200 === 0) {
-        let randomEnemy = Math.floor(Math.random() * enemiesList.length);
-        // Give a random position to the enemy
-        enemiesList[randomEnemy].x += randomX;
-        // Push enemy into enemy array
-        this.enemies.push(enemiesList[randomEnemy]);
-      }
+    if(this.frames>6100 && this.frames<8800){
+        if(this.frames % 80 === 0){
+            let randomEnemy = Math.floor(Math.random()*enemiesList.length)
+            // Give a random position to the enemy
+            enemiesList[randomEnemy].x +=randomX
+            // Push enemy into enemy array
+            this.enemies.push(enemiesList[randomEnemy]);
+        }
     }
     // Level 2 final boss at 30 seconds
-    if (this.frames % 9000 === 0) {
-      this.enemies.push(barrierL, barrierR);
+    if(this.frames % 8800 ===0) {
+        this.enemies.push (barrierL3, barrierR3)}
+}
+
+updateFriends(){
+    //Friends Starting Positions
+    let starterHeight = 40;
+    let randomX = Math.floor(Math.random()*(rightLimit-leftLimit-100));
+    //List of Friends
+    const orangeCar = new Friend(leftLimit,40,100,50,'score',true,'../images/orange f&f.png',ctx);
+    const redTank = new Friend(leftLimit,40,50,70,'lives',true,'../images/red-tank.png',ctx);
+    const friendsList = [orangeCar,redTank];
+    // Firends movement
+    for (let i = 0; i<this.friends.length; i++){
+        // enemies's y ++
+        this.friends[i].y +=1*this.level; 
+         // enemies' draw function
+         this.friends[i].draw();
     }
-  }
+
+    // Draw Live friends
+    if(this.frames === 500 || this.frames === 5000 || this.frames === 7000 ){
+        let tempArray = [];
+         tempArray.push(redTank);
+         tempArray[0].x += randomX;
+         console.log(tempArray[0].type);
+        
+        // Push friend into friend array
+        this.friends.push(tempArray[0]);
+        console.log(tempArray);
+        }
+    // Draw Score friends
+    if(this.frames % 1300 === 0){
+        let tempArray = [];
+         tempArray.push(orangeCar);
+         tempArray[0].x += randomX;
+         console.log(tempArray[0].type);
+        
+        // Push friend into friend array
+        this.friends.push(tempArray[0]);
+        }
+
+}
 
   checkWin() {
     if (this.score === 200) {

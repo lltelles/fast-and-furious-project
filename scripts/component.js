@@ -64,13 +64,12 @@ class Component {
         this.left()<enemy.right()&&
         this.bottom()>enemy.top())
     }
-/*
-    // Crash function with Friends
-    crashWith(friend){
-        return(this.top()<enemy.bottom()&&
-        this.right()>enemy.left()&&
-        this.left()<enemy.right()&&
-        this.bottom()>enemy.top())
-    }*/
-
 }
+
+class Friend extends Component {
+    constructor(x,y,w,h,type,img,source,ctx){
+        super(x,y,w,h,img,source,ctx)
+        this.type = type;
+    }
+}
+    
