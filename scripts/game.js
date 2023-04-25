@@ -122,7 +122,7 @@ updateEnemies(){
     
     //List of Enemies
     const policeCar = new Component(leftLimit,starterHeight,100,40, true,'../images/police-car.png.png',ctx);
-    const policeCar2 = new Component(leftLimit,starterHeight,100,40, true,'../images/cops-car.png',ctx);
+    const policeCar2 = new Component(leftLimit,starterHeight,50,100, true,'../images/cops-car-vertical-down.png',ctx);
     const helicopter = new Component(leftLimit,starterHeight,100,100, true,'../images/helicopter.png',ctx);
     
     const enemiesList = [helicopter,policeCar, policeCar2, policeCar,policeCar2,policeCar2];
@@ -238,8 +238,9 @@ updateFriends(){
   checkWin() {
     if (this.level === 4) {
       this.ctx.globalAlpha = 0.8;
+      ctx.roundRect(131, 124, 442, 392, 10);
       this.ctx.fillStyle = "black";
-      ctx.fillRect(131, 124, 442, 392);
+      this.ctx.fill();
       ctx.font = "50px custom-font2";
       ctx.fillStyle = "#28E010";
       ctx.fillText("YOU WIN", 215, 250);
@@ -271,8 +272,9 @@ updateFriends(){
         this.lives --;
       } else {
         this.ctx.globalAlpha = 0.8;
+        ctx.roundRect(131, 124, 442, 392, 10);
         this.ctx.fillStyle = "black";
-        ctx.fillRect(131, 124, 442, 392);
+        this.ctx.fill();
         ctx.font = "48px custom-font2";
         ctx.fillStyle = "red";
         ctx.fillText("GAME OVER", 175, 250);
