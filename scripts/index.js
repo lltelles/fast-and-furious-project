@@ -8,15 +8,14 @@ let leftLimit = 115;
 let rightLimit = 585;
 
 //Assets Creation
-const player = new Component((canvas.width / 2) - 20, 420, 40, 70, true, '../images/red-tank.png', ctx);
+const player = new Component((canvas.width / 2) - 20, 420, 40, 70, true, '../images/top view mustang black.png', ctx);
 
 
 
 window.onload = () => {
     document.getElementById('start-btn').onclick = () => {
     //Load of Player
-    const player = new Image();
-    player.src="images/red-tank.png"
+    
 
     //Load of the Background 
     const roadImage = new Image();
