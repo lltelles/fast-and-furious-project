@@ -107,7 +107,7 @@ class Game {
         const barrierL = new Component(leftLimit,starterHeight,200,20,true,'../images/cops-car.png',ctx);
         const barrierR = new Component(rightLimit-200,starterHeight,200,20,true,'../images/cops-car.png',ctx);
         
-        const enemiesList = [policeCar, helicopter,policeCar, policeCar, policeCar];
+        const enemiesList = [policeCar,policeCar, policeCar, policeCar];
        
         // Enemies movement
         for (let i = 0; i<this.enemies.length; i++){
