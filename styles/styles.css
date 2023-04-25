@@ -5,7 +5,6 @@
 }
 
 body {
-    /*background-color: #00008B;*/
     background-image: url('/images/ff-background.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -21,7 +20,7 @@ canvas {
     border: 10px solid black;
     border-radius: 20px;
     position: relative;
-    top: 80px;
+    top: 25px;
     left: 31px;
 }
 
@@ -44,15 +43,21 @@ canvas {
     font-size: 110px;
     width: 40%;
     position: relative;
-    bottom: 451px;
+    bottom: 580px;
     left: 876px;
     background: -webkit-linear-gradient(#FEB801, #FD7B28, #EF0D01);
     background-clip: content-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
-}
     
+
+}
+
+#title:hover {
+    filter: drop-shadow(0px 0px 25px white)
+  
+}
 
 
 #p1 {
@@ -64,12 +69,12 @@ canvas {
     position: relative;
     margin: 0;
     left: 876px;
-    bottom: 380px;
+    bottom: 500px;
 }
 
 #start-btn{
     position: relative;
-    bottom: 300px;
+    bottom: 420px;
     left: 1035px;
     width: 15%;
     padding: 10px;
@@ -88,8 +93,9 @@ canvas {
 
 #start-btn:hover,
 #start-btn:focus-visible{
-    transform: translateY(-0.500rem);
+    transform: translateY(-0.250rem);
     transition: transform 250ms;
+    box-shadow: 0px 0px 30px lightgrey;
 }
  #start-btn:active {
     transform: translateY(1px);
@@ -101,7 +107,7 @@ canvas {
     justify-content: flex-end;
     color: lightgray;
     position: relative;
-    bottom: 290px;
+    bottom: 420px;
     right: 281px;
     font-family: monospace;
     font-size: 13px;
@@ -113,6 +119,6 @@ canvas {
     opacity: 0.6;
     width: 4%;
     position: relative;
-    bottom: 335px;
-    left: 1232px;
+    bottom: 465px;
+    left: 1250px;
 }
