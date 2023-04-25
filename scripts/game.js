@@ -160,7 +160,7 @@ updateEnemies(){
         }
     }
     // Level 1 final boss at 30 seconds
-    if(this.frames % 3000 ===0) {
+    if(this.frames === 3000) {
         this.enemies.push (barrierL1, barrierR1)
     }
 
@@ -176,7 +176,7 @@ updateEnemies(){
     }
 
     // Level 2 final boss at 30 seconds
-    if(this.frames % 6000 ===0) {
+    if(this.frames === 6000) {
        this.enemies.push (barrierL2, barrierR2)
     }
 
@@ -191,7 +191,7 @@ updateEnemies(){
         }
     }
     // Level 2 final boss at 30 seconds
-    if(this.frames % 8800 ===0) {
+    if(this.frames === 8800) {
         this.enemies.push (barrierL3, barrierR3)}
 }
 
@@ -200,8 +200,8 @@ updateFriends(){
     let starterHeight = 40;
     let randomX = Math.floor(Math.random()*(rightLimit-leftLimit-100));
     //List of Friends
-    const orangeCar = new Friend(leftLimit,40,100,50,'score',true,'../images/orange f&f.png',ctx);
-    const redTank = new Friend(leftLimit,40,50,70,'lives',true,'../images/red-tank.png',ctx);
+    const orangeCar = new Friend(leftLimit,starterHeight,100,50,'score',true,'../images/orange f&f.png',ctx);
+    const redTank = new Friend(leftLimit,starterHeight,50,70,'lives',true,'../images/red-tank.png',ctx);
     const friendsList = [orangeCar,redTank];
     // Firends movement
     for (let i = 0; i<this.friends.length; i++){
@@ -212,7 +212,7 @@ updateFriends(){
     }
 
     // Draw Live friends
-    if(this.frames === 500 || this.frames === 5000 || this.frames === 7000 ){
+    if(this.frames === 2000 || this.frames === 5000 || this.frames === 7000 ){
         let tempArray = [];
          tempArray.push(redTank);
          tempArray[0].x += randomX;
