@@ -243,10 +243,10 @@ updateFriends(){
       ctx.font = "50px custom-font2";
       ctx.fillStyle = "#28E010";
       ctx.fillText("YOU WIN", 215, 250);
-      ctx.font = "20px custom-font4";
+      ctx.font = "24px custom-font4";
       ctx.fillStyle = "white";
-      ctx.fillText("Congrats! You've helped Dom", 185, 320)
-      ctx.fillText("to find his family.", 230, 350)
+      ctx.fillText("Congrats! You've helped Dom", 160, 320)
+      ctx.fillText("to find his family.", 205, 350)
       ctx.font = "bold 20px custom-font3";
       ctx.fillStyle = "white";
       ctx.fillText("final score", 250, 440);
@@ -273,9 +273,9 @@ updateFriends(){
         this.ctx.globalAlpha = 0.8;
         this.ctx.fillStyle = "black";
         ctx.fillRect(131, 124, 442, 392);
-        ctx.font = "50px custom-font2";
+        ctx.font = "48px custom-font2";
         ctx.fillStyle = "red";
-        ctx.fillText("GAME OVER", 160, 250);
+        ctx.fillText("GAME OVER", 175, 250);
         ctx.font = "bold 20px custom-font3";
         ctx.fillStyle = "white";
         ctx.fillText("FINAL SCORE", 250, 350);
