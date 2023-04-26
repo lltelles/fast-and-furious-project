@@ -26,8 +26,18 @@ class Game {
     this.lives = 3;
     //Level (goes from 1 to 3)
     this.level = 1;
-    this.gameSound = new Audio("../soundtrack/02 Main Theme 1.mp3");
+    // Game Sounds
+    this.gameSound = new Audio('../soundtrack/02 Main Theme 1.mp3');
     this.gameSound.loop = false;
+
+    this.gameOverSound = new Audio('../soundtrack/Game-Over-Audio.wav');
+    this.gameOverSound.loop = false;
+
+    this.gameWinSound = new Audio ('');
+    this.gameWinSound.loop = true;
+
+    this.crashFriendSound = new Audio ('../soundtrack/family-toretto.mp3');
+    this.crashFriendSound.loop = false;
   }
 
   // Start Function
@@ -138,8 +148,10 @@ class Game {
 
       if (this.friends[position].type === "score") {
         this.score += 5000;
+        this.crashFriendSound.play();
       } else if (this.friends[position].type === "lives") {
         this.lives++;
+        this.crashFriendSound.play();
       }
       this.friends.splice(position, 1);
     } else {
@@ -430,7 +442,7 @@ class Game {
           ctx.fillText("FINAL SCORE", 250, 350);
           this.ctx.fillText(`${this.score}`, 320, 400);
           this.stop();
-          gameOverAudio.play();
+          this.gameOverSound.play();
         }
       }
     }
