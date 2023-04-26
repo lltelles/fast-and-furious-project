@@ -13,6 +13,8 @@ class Component {
         this.vxl = 0;
         this.vxr = 0;
         this.vy = 0; 
+
+        this.exploded = false
     }
 
     // Draw Function 
