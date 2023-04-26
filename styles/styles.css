@@ -70,7 +70,7 @@ canvas {
 }
 
 #title:hover {
-    filter: drop-shadow(0px 0px 25px white)
+    filter: drop-shadow(0px 0px 25px lightgoldenrodyellow)
   
 }
 
@@ -98,19 +98,19 @@ canvas {
     font-family: 'custom-font';
     background: -webkit-linear-gradient(#FEB801, #FD7B28, #EF0D01);
     font-size: 20px;
-    color: whitesmoke;
+    color: lightgoldenrodyellow;
     border-radius: 20px;
     border-style: none;
     border: outset;
     border-width: medium;
-    border-color: silver;
+    border-color: lightgoldenrodyellow;
 }
 
 #start-btn:hover,
 #start-btn:focus-visible{
     transform: translateY(-0.250rem);
     transition: transform 250ms;
-    box-shadow: 0px 0px 30px lightgrey;
+    box-shadow: 0px 0px 40px lightgoldenrodyellow;
 }
  #start-btn:active {
     transform: translateY(1px);
@@ -122,7 +122,7 @@ canvas {
     justify-content: flex-end;
     color: lightgray;
     position: relative;
-    bottom: 420px;
+    bottom: 340px;
     right: 281px;
     font-family: monospace;
     font-size: 13px;
@@ -134,6 +134,6 @@ canvas {
     opacity: 0.6;
     width: 4%;
     position: relative;
-    bottom: 465px;
+    bottom: 386px;
     left: 1250px;
 }
