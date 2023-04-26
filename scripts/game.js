@@ -27,17 +27,23 @@ class Game {
     //Level (goes from 1 to 3)
     this.level = 1;
     // Game Sounds
-    this.gameSound = new Audio('../soundtrack/02 Main Theme 1.mp3');
+    this.gameSound = new Audio("../soundtrack/02 Main Theme 1.mp3");
     this.gameSound.loop = false;
 
-    this.gameOverSound = new Audio('../soundtrack/Game-Over-Audio.wav');
+    this.gameOverSound = new Audio("../soundtrack/Game-Over-Sound.mp3");
     this.gameOverSound.loop = false;
 
-    this.gameWinSound = new Audio ('');
-    this.gameWinSound.loop = true;
+    this.gameWinSound = new Audio("../soundtrack/Win-Sound.mp3");
+    this.gameWinSound.loop = false;
 
-    this.crashFriendSound = new Audio ('../soundtrack/family-toretto.mp3');
+    this.crashFriendSound = new Audio("../soundtrack/family-toretto.mp3");
     this.crashFriendSound.loop = false;
+
+    this.crashExplosionSound = new Audio("../soundtrack/mixkit-8-bit-bomb-explosion-2811.wav");
+    this.crashExplosionSound.loop = false;
+
+    this.checkpointSound = new Audio("../soundtrack/checkpoint-sound.wav");
+    this.checkpointSound.loop = false;
   }
 
   // Start Function
@@ -100,7 +106,7 @@ class Game {
       this.height - 40
     );
     if (this.level === 1) {
-      this.bckgY += 2;
+      this.bckgY += 3;
     }
     if (this.level === 2) {
       this.bckgY += 4;
@@ -161,6 +167,7 @@ class Game {
   updateLevel() {
     if (this.frames % 3000 === 0) {
       this.level++;
+      this.checkpointSound.play();
     }
   }
 
@@ -170,101 +177,23 @@ class Game {
     let randomX = Math.floor(Math.random() * (rightLimit - leftLimit - 100));
 
     //List of Enemies
-    const policeCar = new Component(
-      leftLimit,
-      starterHeight,
-      100,
-      40,
-      true,
-      "../images/police-car.png.png",
-      ctx
-    );
-    const policeCar2 = new Component(
-      leftLimit,
-      starterHeight,
-      50,
-      100,
-      true,
-      "../images/cops-car-vertical-down.png",
-      ctx
-    );
-    const helicopter = new Component(
-      leftLimit,
-      starterHeight,
-      100,
-      100,
-      true,
-      "../images/helicopter.png",
-      ctx
-    );
+    const policeCar = new Component(leftLimit, starterHeight,50,100,true,"../images/cops-car-vertical-down.png",ctx);
+    const submarine = new Component(leftLimit,starterHeight,100,80,true,"../images/submarine.png",ctx);
+    const helicopter = new Component(leftLimit,starterHeight,90,90,true,"../images/helicopter.png",ctx);
+    const tank = new Component(leftLimit,starterHeight,90,90,true,"../images/tank.png",ctx);
 
-    const enemiesList = [
-      helicopter,
-      policeCar,
-      policeCar2,
-      policeCar,
-      policeCar2,
-      policeCar2,
-    ];
+    const enemiesList = [helicopter,policeCar,submarine,tank,policeCar,helicopter,policeCar];
 
     //checkpoint Enemy
     //level 1
-    const barrierL1 = new Component(
-      leftLimit,
-      starterHeight,
-      100,
-      40,
-      true,
-      "../images/cop-cars-barrier-4.png",
-      ctx
-    );
-    const barrierR1 = new Component(
-      rightLimit - 100,
-      starterHeight,
-      100,
-      40,
-      true,
-      "../images/cop-cars-barrier-4.png",
-      ctx
-    );
+    const barrierL1 = new Component( leftLimit, starterHeight, 100, 40, true, "../images/cops-car.png", ctx );
+    const barrierR1 = new Component( rightLimit - 100, starterHeight, 100, 40, true, "../images/cops-car.png", ctx );
     //level 2
-    const barrierL2 = new Component(
-      leftLimit,
-      starterHeight,
-      150,
-      40,
-      true,
-      "../images/cops-car.png",
-      ctx
-    );
-    const barrierR2 = new Component(
-      rightLimit - 150,
-      starterHeight,
-      150,
-      40,
-      true,
-      "../images/cops-car.png",
-      ctx
-    );
+    const barrierL2 = new Component( leftLimit, starterHeight, 150, 40, true, "../images/cop-cars-barrier-2.png", ctx );
+    const barrierR2 = new Component( rightLimit - 150, starterHeight, 150, 40, true, "../images/cop-cars-barrier-2.png", ctx );
     //level 3
-    const barrierL3 = new Component(
-      leftLimit,
-      starterHeight,
-      200,
-      40,
-      true,
-      "../images/cop-cars-barrier-4.png",
-      ctx
-    );
-    const barrierR3 = new Component(
-      rightLimit - 200,
-      starterHeight,
-      200,
-      40,
-      true,
-      "../images/cop-cars-barrier-4.png",
-      ctx
-    );
+    const barrierL3 = new Component( leftLimit, starterHeight, 200, 40, true, "../images/cop-cars-barrier-3.png", ctx );
+    const barrierR3 = new Component( rightLimit - 200, starterHeight, 200, 40, true, "../images/cop-cars-barrier-3.png", ctx );
 
     // Enemies movement
     for (let i = 0; i < this.enemies.length; i++) {
@@ -343,31 +272,13 @@ class Game {
     let starterHeight = -50;
     let randomX = Math.floor(Math.random() * (rightLimit - leftLimit - 100));
     //List of Friends
-    const orangeCar = new Friend(
-      leftLimit,
-      starterHeight,
-      100,
-      50,
-      "score",
-      true,
-      "../images/orange f&f.png",
-      ctx
-    );
-    const redTank = new Friend(
-      leftLimit,
-      starterHeight,
-      50,
-      70,
-      "lives",
-      true,
-      "../images/red-tank.png",
-      ctx
-    );
-    const friendsList = [orangeCar, redTank];
+    const orangeCar = new Friend( leftLimit, starterHeight, 100, 70, "score", true, "../images/orange f&f.png", ctx );
+    const domMustang = new Friend( leftLimit, starterHeight, 100, 70, "lives", true, "../images/dom-mustang.png", ctx );
+    const friendsList = [orangeCar, domMustang];
     // Friends movement
     for (let i = 0; i < this.friends.length; i++) {
       // enemies's y ++
-      this.friends[i].y += 1 * this.level;
+      this.friends[i].y += 2 * this.level;
       // enemies' draw function
       this.friends[i].draw();
     }
@@ -375,7 +286,7 @@ class Game {
     // Draw Live friends
     if (this.frames === 2000 || this.frames === 5000 || this.frames === 7000) {
       let tempArray = [];
-      tempArray.push(redTank);
+      tempArray.push(domMustang);
       tempArray[0].x += randomX;
       console.log(tempArray[0].type);
 
@@ -414,8 +325,11 @@ class Game {
       this.ctx.fillText(`${this.score}`, 320, 475);
 
       this.stop();
+      this.gameWinSound.currentTime=45;
+      this.gameWinSound.play();
     }
   }
+  // adicionar colision com os checkpoints
   checkGameOver() {
     for (let i = 0; i < this.enemies.length; i++) {
       if (this.player.crashWith(this.enemies[i]) && !this.enemies[i].exploded) {
@@ -423,6 +337,8 @@ class Game {
         this.enemies[i].w = 80;
         this.enemies[i].h = 80;
         this.enemies[i].source = "../images/explosion.png";
+        this.crashExplosionSound.currentTime=0;
+        this.crashExplosionSound.play();
         setTimeout(() => {
           this.enemies.splice(i, 1);
         }, 200);
