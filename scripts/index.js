@@ -7,21 +7,14 @@ const ctx = canvas.getContext('2d');
 let leftLimit = 115;
 let rightLimit = 585;
 
-//Assets Creation
+//Player Creation
 const player = new Component((canvas.width / 2) - 20, 500, 45, 85, true, '../images/top view mustang black.png', ctx);
 
+//const backgroundImage = new Component(0,40,canvas.width,canvas.height-40,true,"../images/road.png",ctx);
 
 
 window.onload = () => {
     document.getElementById('start-btn').onclick = () => {
-    //Load of Player
-    
-
-    //Load of the Background 
-    const roadImage = new Image();
-    roadImage.src='./images/road.png';
-    
-
     startGame();
     };
 }
@@ -31,6 +24,7 @@ window.onload = () => {
     const game = new Game(ctx, canvas.width, canvas.height, player);
     // Call a function of Game Board's called Start.
     game.start();
+    
     }
 
     //Movement of the player speed definition
