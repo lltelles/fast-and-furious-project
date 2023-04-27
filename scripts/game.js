@@ -362,5 +362,38 @@ class Game {
         }
       }
     }
+    //Repeated Code for checkpoint crashes
+    for (let i = 0; i < this.checkpoint.length; i++) {
+      if (this.player.crashWith(this.checkpoint[i]) && !this.checkpoint[i].exploded) {
+        this.checkpoint[i].exploded = true;
+        this.checkpoint[i].w = 80;
+        this.checkpoint[i].h = 80;
+        this.checkpoint[i].source = "../images/explosion.png";
+        this.crashExplosionSound.currentTime=0;
+        this.crashExplosionSound.play();
+        setTimeout(() => {
+          this.checkpoint.splice(i, 1);
+        }, 200);
+
+        if (this.lives > 1) {
+          this.lives--;
+        } else {
+          this.ctx.globalAlpha = 0.8;
+          ctx.roundRect(131, 124, 442, 392, 10);
+          this.ctx.fillStyle = "black";
+          this.ctx.fill();
+          ctx.font = "48px custom-font2";
+          ctx.fillStyle = "red";
+          ctx.fillText("GAME OVER", 175, 250);
+          ctx.font = "bold 20px custom-font3";
+          ctx.fillStyle = "white";
+          ctx.fillText("FINAL SCORE", 250, 350);
+          this.ctx.fillText(`${this.score}`, 320, 400);
+          this.stop();
+          this.gameOverSound.play();
+        }
+      }
+    }
+
   }
 }
