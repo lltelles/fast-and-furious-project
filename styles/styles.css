@@ -118,12 +118,7 @@ canvas {
 
 
 #arrows{
-    display: flex;
-    justify-content: flex-end;
     color: lightgray;
-    position: relative;
-    bottom: 340px;
-    right: 281px;
     font-family: monospace;
     font-size: 13px;
     opacity: 0.8;
@@ -132,8 +127,19 @@ canvas {
 #icon-arrows {
     filter: invert(1);
     opacity: 0.6;
-    width: 4%;
-    position: relative;
-    bottom: 386px;
-    left: 1250px;
+    width: 20%;
 }
+
+.arrows2 {
+    display: flex;
+    align-items: center;
+    position: relative;
+    bottom: 368px;
+    width: 20%;
+    justify-content: center;
+    left: 1000px;
+}
+
+
+
+
