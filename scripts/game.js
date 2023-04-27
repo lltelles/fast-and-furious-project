@@ -28,6 +28,7 @@ class Game {
     this.level = 1;
     // Game Sounds
     this.gameSound = new Audio("../soundtrack/02 Main Theme 1.mp3");
+    this.gameSound.volume=0.5;
     this.gameSound.loop = false;
 
     this.gameOverSound = new Audio("../soundtrack/Game-Over-Sound.mp3");
@@ -40,6 +41,7 @@ class Game {
     this.crashFriendSound.loop = false;
 
     this.crashExplosionSound = new Audio("../soundtrack/mixkit-8-bit-bomb-explosion-2811.wav");
+    this.crashExplosionSound.volume=0.5;
     this.crashExplosionSound.loop = false;
 
     this.checkpointSound = new Audio("../soundtrack/checkpoint-sound.wav");
@@ -337,13 +339,13 @@ class Game {
         this.enemies[i].w = 80;
         this.enemies[i].h = 80;
         this.enemies[i].source = "../images/explosion.png";
-        this.crashExplosionSound.currentTime=0;
-        this.crashExplosionSound.play();
         setTimeout(() => {
           this.enemies.splice(i, 1);
         }, 200);
 
         if (this.lives > 1) {
+          this.crashExplosionSound.currentTime=0;
+          this.crashExplosionSound.play();
           this.lives--;
         } else {
           this.ctx.globalAlpha = 0.8;
