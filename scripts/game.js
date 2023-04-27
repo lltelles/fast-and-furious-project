@@ -86,7 +86,7 @@ class Game {
     this.checkWin();
     // Create our Information Bar
     this.createInfoBar();
-  };
+  }
 
   // Clear Background
   clear() {
@@ -141,6 +141,31 @@ class Game {
     ctx.fillStyle = "white";
     ctx.font = "15px custom-font3";
     ctx.fillText(`Level: ${this.level}`, 580, 25);
+
+    if (this.frames <= 150){
+      ctx.roundRect(131, 124, 442, 392, 10);
+    this.ctx.fillStyle = "black";
+    this.ctx.fill();
+    ctx.font = "32px custom-font3";
+    ctx.fillStyle = "white";
+    ctx.fillText("RACE BONUS", 210, 200);
+    ctx.font = " 30px custom-font4";
+    ctx.fillText("SCORE: +5000", 270, 300);
+    ctx.fillText("LIVES: +1", 270, 400);
+    ctx.font = "bold 20px custom-font3";
+    ctx.fillStyle = "white";
+    const img = new Image();
+    this.img = img;
+    this.img.src="../images/orange f&f.png"
+    this.ctx.drawImage(img, 170, 260, 80, 50)
+    const img2 = new Image();
+    this.img2 = img2;
+    this.img2.src="../images/dom-mustang.png"
+    this.ctx.drawImage(img2, 160, 370, 100, 50)
+        
+    }
+
+    
   }
   updateScoreLives() {
     const crashed = this.friends.some((friend) => {
@@ -181,7 +206,7 @@ class Game {
     //List of Enemies
     const policeCar = new Component(leftLimit, starterHeight,50,100,true,"../images/cops-car-vertical-down.png",ctx);
     const submarine = new Component(leftLimit,starterHeight,100,80,true,"../images/submarine.png",ctx);
-    const helicopter = new Component(leftLimit,starterHeight,90,90,true,"../images/helicopter.png",ctx);
+    const helicopter = new Component(leftLimit,starterHeight,150,90,true,"../images/helicopter2.png",ctx);
     const tank = new Component(leftLimit,starterHeight,90,90,true,"../images/tank.png",ctx);
 
     const enemiesList = [helicopter,policeCar,submarine,tank,policeCar,helicopter,policeCar];
@@ -222,7 +247,8 @@ class Game {
     }
 
     //level 1 difficulty from Start to 28seconds
-    if (this.frames < 2801) {
+    if (this.frames > 199  && this.frames < 2801) {
+
       // each 2 seconds, a enemy is added to the array
       if (this.frames % 200 === 0) {
         let randomEnemy = Math.floor(Math.random() * enemiesList.length);
@@ -254,7 +280,7 @@ class Game {
     }
 
     //level 3 difficulty
-    if (this.frames > 6100 && this.frames < 8800) {
+    if (this.frames > 6100 && this.frames < 8601) {
       if (this.frames % 80 === 0) {
         let randomEnemy = Math.floor(Math.random() * enemiesList.length);
         // Give a random position to the enemy
@@ -275,8 +301,7 @@ class Game {
     let randomX = Math.floor(Math.random() * (rightLimit - leftLimit - 100));
     //List of Friends
     const orangeCar = new Friend( leftLimit, starterHeight, 100, 70, "score", true, "../images/orange f&f.png", ctx );
-    const domMustang = new Friend( leftLimit, starterHeight, 100, 70, "lives", true, "../images/dom-mustang.png", ctx );
-    const friendsList = [orangeCar, domMustang];
+    const domMustang = new Friend( leftLimit, starterHeight, 120, 70, "lives", true, "../images/dom-mustang.png", ctx );
     // Friends movement
     for (let i = 0; i < this.friends.length; i++) {
       // enemies's y ++
@@ -309,7 +334,7 @@ class Game {
   }
 
   checkWin() {
-    if (this.level === 4) {
+    if (this.level === 2) {
       this.ctx.globalAlpha = 0.8;
       ctx.roundRect(131, 124, 442, 392, 10);
       this.ctx.fillStyle = "black";
@@ -331,7 +356,7 @@ class Game {
       this.gameWinSound.play();
     }
   }
-  // adicionar colision com os checkpoints
+  // adicionar collision com os checkpoints
   checkGameOver() {
     for (let i = 0; i < this.enemies.length; i++) {
       if (this.player.crashWith(this.enemies[i]) && !this.enemies[i].exploded) {

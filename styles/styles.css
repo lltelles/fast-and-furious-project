@@ -19,6 +19,20 @@
     src: url(./font/VCR_OSD_MONO_1.001.ttf);
 }
 
+.font1{
+    font-family: "custom-font";
+    /* visibility: hidden; */
+}
+.font2{
+    font-family: "custom-font2";
+}
+.font3{
+    font-family: "custom-font3";
+}
+.font4{
+    font-family: "custom-font4";
+}
+
 
 body {
     background-image: url('/images/ff-background.jpg');
