@@ -35,7 +35,7 @@
 
 
 body {
-    background-image: url('/docs/assets/images/ff-background.jpg');
+    background-image: url('docs/assets/images/ff-background.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100%;
