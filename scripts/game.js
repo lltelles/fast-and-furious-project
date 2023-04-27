@@ -334,7 +334,7 @@ class Game {
   }
 
   checkWin() {
-    if (this.level === 2) {
+    if (this.level === 4) {
       this.ctx.globalAlpha = 0.8;
       ctx.roundRect(131, 124, 442, 392, 10);
       this.ctx.fillStyle = "black";
