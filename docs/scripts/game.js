@@ -27,24 +27,24 @@ class Game {
     //Level (goes from 1 to 3)
     this.level = 1;
     // Game Sounds
-    this.gameSound = new Audio("../soundtrack/02 Main Theme 1.mp3");
+    this.gameSound = new Audio("/docs/assets/soundtrack/02 Main Theme 1.mp3");
     this.gameSound.volume=0.5;
     this.gameSound.loop = false;
 
-    this.gameOverSound = new Audio("../soundtrack/Game-Over-Sound.mp3");
+    this.gameOverSound = new Audio("/docs/assets/soundtrack/Game-Over-Sound.mp3");
     this.gameOverSound.loop = false;
 
-    this.gameWinSound = new Audio("../soundtrack/Win-Sound.mp3");
+    this.gameWinSound = new Audio("/docs/assets/soundtrack/Win-Sound.mp3");
     this.gameWinSound.loop = false;
 
-    this.crashFriendSound = new Audio("../soundtrack/family-toretto.mp3");
+    this.crashFriendSound = new Audio("/docs/assets/soundtrack/family-toretto.mp3");
     this.crashFriendSound.loop = false;
 
-    this.crashExplosionSound = new Audio("../soundtrack/mixkit-8-bit-bomb-explosion-2811.wav");
+    this.crashExplosionSound = new Audio("/docs/assets/soundtrack/mixkit-8-bit-bomb-explosion-2811.wav");
     this.crashExplosionSound.volume=0.5;
     this.crashExplosionSound.loop = false;
 
-    this.checkpointSound = new Audio("../soundtrack/checkpoint-sound.wav");
+    this.checkpointSound = new Audio("/docs/assets/soundtrack/checkpoint-sound.wav");
     this.checkpointSound.loop = false;
   }
 
@@ -98,7 +98,7 @@ class Game {
       this.img = img;
     });
 
-    img.src = "../images/road.png";
+    img.src = "/docs/assets/images/road.png";
     this.ctx.drawImage(img, 0, this.bckgY, this.width, this.height - 40);
     this.ctx.drawImage(
       img,
@@ -156,11 +156,11 @@ class Game {
     ctx.fillStyle = "white";
     const img = new Image();
     this.img = img;
-    this.img.src="../images/orange f&f.png"
+    this.img.src="/docs/assets/images/orange f&f.png"
     this.ctx.drawImage(img, 170, 260, 80, 50)
     const img2 = new Image();
     this.img2 = img2;
-    this.img2.src="../images/dom-mustang.png"
+    this.img2.src="/docs/assets/images/dom-mustang.png"
     this.ctx.drawImage(img2, 160, 370, 100, 50)
         
     }
@@ -204,23 +204,23 @@ class Game {
     let randomX = Math.floor(Math.random() * (rightLimit - leftLimit - 100));
 
     //List of Enemies
-    const policeCar = new Component(leftLimit, starterHeight,50,100,true,"../images/cops-car-vertical-down.png",ctx);
-    const submarine = new Component(leftLimit,starterHeight,100,80,true,"../images/submarine.png",ctx);
-    const helicopter = new Component(leftLimit,starterHeight,150,90,true,"../images/helicopter2.png",ctx);
-    const tank = new Component(leftLimit,starterHeight,90,90,true,"../images/tank.png",ctx);
+    const policeCar = new Component(leftLimit, starterHeight,50,100,true,"/docs/assets/images/cops-car-vertical-down.png",ctx);
+    const submarine = new Component(leftLimit,starterHeight,100,80,true,"/docs/assets/images/submarine.png",ctx);
+    const helicopter = new Component(leftLimit,starterHeight,150,90,true,"/docs/assets/images/helicopter2.png",ctx);
+    const tank = new Component(leftLimit,starterHeight,90,90,true,"/docs/assets/images/tank.png",ctx);
 
     const enemiesList = [helicopter,policeCar,submarine,tank,policeCar,helicopter,policeCar];
 
     //checkpoint Enemy
     //level 1
-    const barrierL1 = new Component( leftLimit, starterHeight, 100, 40, true, "../images/cops-car.png", ctx );
-    const barrierR1 = new Component( rightLimit - 100, starterHeight, 100, 40, true, "../images/cops-car.png", ctx );
+    const barrierL1 = new Component( leftLimit, starterHeight, 100, 40, true, "/docs/assets/images/cops-car.png", ctx );
+    const barrierR1 = new Component( rightLimit - 100, starterHeight, 100, 40, true, "/docs/assets/images/cops-car.png", ctx );
     //level 2
-    const barrierL2 = new Component( leftLimit, starterHeight, 150, 40, true, "../images/cop-cars-barrier-2.png", ctx );
-    const barrierR2 = new Component( rightLimit - 150, starterHeight, 150, 40, true, "../images/cop-cars-barrier-2.png", ctx );
+    const barrierL2 = new Component( leftLimit, starterHeight, 150, 40, true, "/docs/assets/images/cop-cars-barrier-2.png", ctx );
+    const barrierR2 = new Component( rightLimit - 150, starterHeight, 150, 40, true, "/docs/assets/images/cop-cars-barrier-2.png", ctx );
     //level 3
-    const barrierL3 = new Component( leftLimit, starterHeight, 200, 40, true, "../images/cop-cars-barrier-3.png", ctx );
-    const barrierR3 = new Component( rightLimit - 200, starterHeight, 200, 40, true, "../images/cop-cars-barrier-3.png", ctx );
+    const barrierL3 = new Component( leftLimit, starterHeight, 200, 40, true, "/docs/assets/images/cop-cars-barrier-3.png", ctx );
+    const barrierR3 = new Component( rightLimit - 200, starterHeight, 200, 40, true, "/docs/assets/images/cop-cars-barrier-3.png", ctx );
 
     // Enemies movement
     for (let i = 0; i < this.enemies.length; i++) {
@@ -300,8 +300,8 @@ class Game {
     let starterHeight = -50;
     let randomX = Math.floor(Math.random() * (rightLimit - leftLimit - 100));
     //List of Friends
-    const orangeCar = new Friend( leftLimit, starterHeight, 100, 70, "score", true, "../images/orange f&f.png", ctx );
-    const domMustang = new Friend( leftLimit, starterHeight, 120, 70, "lives", true, "../images/dom-mustang.png", ctx );
+    const orangeCar = new Friend( leftLimit, starterHeight, 100, 70, "score", true, "/docs/assets/images/orange f&f.png", ctx );
+    const domMustang = new Friend( leftLimit, starterHeight, 120, 70, "lives", true, "/docs/assets/images/dom-mustang.png", ctx );
     // Friends movement
     for (let i = 0; i < this.friends.length; i++) {
       // enemies's y ++
@@ -363,7 +363,7 @@ class Game {
         this.enemies[i].exploded = true;
         this.enemies[i].w = 80;
         this.enemies[i].h = 80;
-        this.enemies[i].source = "../images/explosion.png";
+        this.enemies[i].source = "/docs/assets/images/explosion.png";
         setTimeout(() => {
           this.enemies.splice(i, 1);
         }, 200);
@@ -395,7 +395,7 @@ class Game {
         this.checkpoint[i].exploded = true;
         this.checkpoint[i].w = 80;
         this.checkpoint[i].h = 80;
-        this.checkpoint[i].source = "../images/explosion.png";
+        this.checkpoint[i].source = "/docs/assets/images/explosion.png";
         this.crashExplosionSound.currentTime=0;
         this.crashExplosionSound.play();
         setTimeout(() => {

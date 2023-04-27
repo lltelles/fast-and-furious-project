@@ -8,7 +8,7 @@ let leftLimit = 115;
 let rightLimit = 585;
 
 //Player Creation
-const player = new Component((canvas.width / 2) - 23, 500, 45, 85, true, '../images/top view mustang black.png', ctx);
+const player = new Component((canvas.width / 2) - 23, 500, 45, 85, true, '/docs/assets/images/top view mustang black.png', ctx);
 
 //const backgroundImage = new Component(0,40,canvas.width,canvas.height-40,true,"../images/road.png",ctx);
 
